@@ -1,0 +1,5 @@
+-- SET FOREIGN_KEY_CHECKS = 0;
+
+TRUNCATE TABLE discount_card;
+
+ALTER SEQUENCE discount_card_id_seq RESTART WITH 1;

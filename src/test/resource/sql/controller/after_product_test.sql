@@ -1,0 +1,5 @@
+-- SET FOREIGN_KEY_CHECKS = 0;
+
+TRUNCATE TABLE product;
+
+ALTER SEQUENCE product_id_seq RESTART WITH 1;

@@ -1,0 +1,15 @@
+TRUNCATE TABLE discount_card;
+TRUNCATE TABLE settings;
+TRUNCATE TABLE product;
+TRUNCATE TABLE receipt_header CASCADE;
+TRUNCATE TABLE receipt_item CASCADE;
+TRUNCATE TABLE receipt_footer CASCADE;
+TRUNCATE TABLE receipt CASCADE;
+
+ALTER SEQUENCE discount_card_id_seq RESTART WITH 1;
+ALTER SEQUENCE settings_id_seq RESTART WITH 1;
+ALTER SEQUENCE product_id_seq RESTART WITH 1;
+ALTER SEQUENCE receipt_id_seq RESTART WITH 1;
+ALTER SEQUENCE receipt_header_id_seq RESTART WITH 1;
+ALTER SEQUENCE receipt_item_id_seq RESTART WITH 1;
+ALTER SEQUENCE receipt_footer_id_seq RESTART WITH 1;

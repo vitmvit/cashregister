@@ -1,0 +1,57 @@
+version: '3.2'
+
+volumes:
+  db-postgre:
+  cashregister:
+
+networks:
+  cashregister-net:
+    name: cashregister-net
+    driver: bridge
+
+services:
+
+  db-adminer:
+    container_name: db-adminer
+    build:
+      context: ./adminer
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      ADMINER_DESIGN: 'pappu687'
+      POSTRGRE_HOST: postgre-server
+    ports:
+      - 80:8080
+    networks:
+      - cashregister-net
+    links:
+      - db-postgre:postgre-server
+
+  db-postgre:
+    container_name: db-postgre
+    build:
+      context: ./postgre
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: cash_register
+    ports:
+      - 5432:5432
+    networks:
+      - cashregister-net
+    volumes:
+      - db-postgre:/var/lib/postgresql/data
+
+  cashregister-service:
+    container_name: cashregister-service
+    build:
+      context: ./../
+      dockerfile: Dockerfile
+    depends_on:
+      - db-postgre
+    ports:
+      - 8080:8080
+    networks:
+      - cashregister-net
